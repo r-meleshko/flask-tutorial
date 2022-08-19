@@ -34,7 +34,7 @@ def register():
             except db.IntegrityError:
                 error = f"User {username} is already registered."
             else:  # Code to execute if no exceptions raised in try clause
-                return redirect(url_for("auth_login"))
+                return redirect(url_for("auth.login"))
 
         flash(error)
 

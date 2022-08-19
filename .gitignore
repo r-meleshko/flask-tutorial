@@ -1,6 +1,7 @@
 # Project specific files to ignore
 archive/
 .DS_Store
+*.sqlite
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
