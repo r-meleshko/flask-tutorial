@@ -16,24 +16,24 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()  # Creating a connection by using get_db function defined in db module
+        db = get_db()
         error = None
 
-        if not username:  # Make sure that both username and password are not empty
-            error = 'Username is required'
-        if not password:
-            error = 'Password is required'
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
 
         if error is None:
             try:
                 db.execute(
                     "INSERT INTO user (username, password) VALUES (?, ?)",
-                    (username, generate_password_hash(password))
+                    (username, generate_password_hash(password)),
                 )
                 db.commit()
             except db.IntegrityError:
                 error = f"User {username} is already registered."
-            else:  # Code to execute if no exceptions raised in try clause
+            else:
                 return redirect(url_for("auth.login"))
 
         flash(error)
